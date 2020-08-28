@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title;?></title>
+    <title>SiapLapor!-edit Pengaduan</title>
     
     <style>
     body {
@@ -12,7 +12,7 @@
     .wrapper {
         background-color: #fff;
         width: 400px;
-        height: 700px;
+        height: 550px;
         margin-top: 30px;
         margin-bottom: 2%;
         margin-left: auto;
@@ -67,21 +67,20 @@
         <img style="margin-top: 1%;" src="<?php echo base_url('assets/SiapLapor!.png')?>" style="height: 80px;width: 280px;">
     </div>
     <div class="wrapper">
-        <form action="<?php echo site_url('test/regAdmin')?>" method="POST">
-            <h1 class="text-secondary">Daftar Petugas</h1>
-            <label for="#">ID Petugas</label>
-            <input type="text" name="id" placeholder="masukan nik" autofocus="">
-            <label for="#">Nama Petugas</label>
-            <input type="text" name="nampet" placeholder="masukan nama lengkap" autofocus="">
-            <label for="#">username</label>
-            <input type="text" name="username" placeholder="masukan username" autofocus="">
-            <label for="#">password</label>
-            <input type="password" name="pw" placeholder="masukan password">
-            <label for="#">No. HP</label>
-            <input type="text" name="nohp" placeholder="masukan nomor hp" autofocus="">
-            <a href="#"><button class="bg-secondary" type="submit">Daftar</button></a> 
-            <p style="margin-left: 40%;">sudah punya akun? <a href="<?php echo site_url('test/login')?>" class="text-dark">Masuk</a></p>
-        </form>
+        <?php foreach($updateData as $edit) { ?>
+            <form action="<?php echo site_url('test/updatePengaduan')?>" method="POST" enctype="multipart/form-data">
+                <h1 class="text-secondary">Edit Pengaduan Disini</h1>
+                <input type="hidden" name="status" value="<?php echo $edit->status ?>">
+                <input type="hidden" name="id_pengaduan" value="<?php echo $edit->id_pengaduan ?>">
+                <label for="#">NIK</label>
+                <input type="text" name="nik" placeholder="masukan nik" autofocus="" value="<?php echo $edit->nik ?>" disabled>
+                <label for="#">foto <h6>(.jpg|.png|.gif)</h6></label>
+                <input type="file" name="foto" class="form-control-file" value="<?php echo $edit->foto?>">
+                <label for="exampleFormControlTextarea1">isi pengaduan</label>
+                <textarea name="isiLaporan" class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $edit->isi_laporan ?>"></textarea><br>
+                <button class="bg-secondary" type="submit">simpan</button>
+            </form>
+        <?php } ?>
     </div>
 </body>
 </html>

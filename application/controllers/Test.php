@@ -71,6 +71,20 @@ class Test extends CI_Controller {
 	}
 	//
 
+	// membuka halaman regis admin
+	public function regisAdmin()
+	{
+		$this->load->view('admin-regis');
+	}
+	// 
+
+	// get data ke model untuk input data admin
+	public function regAdmin()
+	{
+		$this->modelsystem->inputAdmin();
+	}
+	//
+
 	// buka halaman admin
 	public function admin()
 	{
@@ -103,10 +117,15 @@ class Test extends CI_Controller {
 	{
 		$where = array('id_pengaduan' => $id);
 		$data['updateData'] = $this->modelsystem->editPengaduan('pengaduan',$where)->result();
-		$data['data_pengaduan'] = $this->modelsystem->ambilData();
-		$this->load->view('users',$data);
+		$this->load->view('edit_pengaduan',$data);
 	}
-	// 
+	//
+
+	// edit pengaduan
+	public function updatePengaduan()
+	{
+		$this->modelsystem->updateData();
+	}
 
 	// membuka halaman data
 	public function base() {

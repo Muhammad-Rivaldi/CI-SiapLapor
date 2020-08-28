@@ -66,7 +66,7 @@
                             <input type="text" name="nik" id="nik" value="<?php echo $this->session->userdata('nik')?>" disabled autofocus="">
                         </div>
                         <div class="form-group">
-                            <label for="#">foto</label>
+                            <label for="#">foto <h6>(.jpg|.png|.gif)</h6></label>
                             <input type="file" name="foto" class="form-control-file"/>
                         </div>
                     </div>
@@ -187,45 +187,6 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
                     <?php echo anchor('test/hapusData/'.$users->id_pengaduan,'<button type="button" class="btn btn-danger">ya</button>')?> 
                 </div>
-            </div>
-        </div>
-    </div>
-    <!--  -->
-
-    <!-- Modal untuk edit data pengaduan-->
-    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">edit data pengaduan</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <?php foreach($updateData as $edit) {?>
-                    <form action="<?php echo site_url('test/updatePengaduan')?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <input type="hidden" name="idPengaduan" value="<?php echo $edit->id_pengaduan ?>">
-                    </div>
-                    <div class="form-group">
-                        <label for="#">nik</label>
-                        <input type="text" name="nik" id="nik" value="<?php echo $this->session->userdata('nik')?>" disabled autofocus="">
-                    </div>
-                    <div class="form-group">
-                        <label for="#">foto</label>
-                        <input type="file" name="foto" class="form-control-file" value="<?php echo $edit->foto ?>">
-                    </div> 
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">isi pengaduan</label>
-                        <textarea name="isiLaporan" class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $edit->isi_laporan ?>"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Simpan</button>
-                </div>
-                    </form>
-                    <?php } ?>
             </div>
         </div>
     </div>
