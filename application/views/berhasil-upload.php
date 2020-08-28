@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SiapLapor!</title>
+    <title>SiapLapor!-berhasil kirim pengaduan</title>
     
     <style>
     body {

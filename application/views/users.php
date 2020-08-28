@@ -43,8 +43,9 @@
         </a>
         <button class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal" type="submit">Keluar</button>
     </nav>
+    <!--  -->
 
-    <!-- isi -->
+    <!-- konten -->
     <div class="container mt-3" align="center">
         <span><i class="fas fa-user-circle" style="width: 100px;height: 100px;border-radius: 50%;"></i></span>
         <h1><?php echo $this->session->userdata('nama') ?></h1>
@@ -55,8 +56,9 @@
     <br>
     <h1>ajukan pengaduan disini</h1><br>
 
-    <div class="container"> 
-            <?php echo form_open_multipart('test/simpan_to_pengaduan');?>
+    <!-- form pengaduan disini -->
+    <div class="container">
+        <form action="<?php echo site_url('test/simpan_to_pengaduan')?>" method="post" enctype="multipart/form-data">   
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
@@ -65,7 +67,7 @@
                         </div>
                         <div class="form-group">
                             <label for="#">foto</label>
-                            <input type="file" name="foto" class="form-control-file">
+                            <input type="file" name="foto" class="form-control-file"/>
                         </div>
                     </div>
                     <div class="col">
@@ -76,15 +78,56 @@
                         <button type="submit" class="btn btn-primary btn-lg btn-block" name="kirim">kirim</button>
                     </div>
                 </div>
-            <?php echo form_close()?>
+            </form> 
     </div>
+    <!--  -->
     <br>
     <hr>
     <br>
     <h1>pengaduan saya</h1><br>
+    <!-- menampilkan pengaduan berdasarkan id user login -->
+    <div class="container">
+        <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">ID Pegaduan</th>
+                        <th scope="col">Tanggal pengaduan</th>
+                        <th scope="col">NIK</th>
+                        <th scope="col">Isi Laporan</th>
+                        <th scope="col">Foto</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Modifikasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $no=1;
+                            foreach ($data_pengaduan as $users) {
+                    ?>
+                            <tr>
+                                <td><?php echo $no++ ;?></td>
+                                <td><?php echo $users->id_pengaduan ?></td>
+                                <td><?php echo $users->tgl_pengaduan ?></td>
+                                <td><?php echo $users->nik ?></td>
+                                <td><?php echo $users->isi_laporan ?></td>
+                                <td><button class="btn" data-toggle="modal" data-target="#gambar"><img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail" style="width: 100px;height: 100px;"></button></td>
+                                <td><?php echo $users->status ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"><i class="fa fa-trash"></i></button>
+                                    <?php echo anchor('test/editData/'.$users->id_pengaduan,'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>')?> 
+                                </td>
+                            </tr>
+                    <?php 
+                        } 
+                    ?>
+                </tbody>
+        </table>
+        <button type="button" class="btn btn-primary btn-lg mb-3">print</button>
+    </div>
+    <!--  -->
     
-    
-    <!-- Modal -->
+    <!-- Modal untuk exit-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -101,6 +144,88 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
                     <a href="<?php echo site_url('test/logout')?>"><button type="button" class="btn btn-primary">Ya</button></a> 
                 </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+
+    <!-- Modal untuk preview foto pengaduan-->
+    <div class="modal fade" id="gambar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Preview Foto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+
+    <!-- Modal untuk hapus data-->
+    <div class="modal fade" id="hapus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">konfirmasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>apakah anda ingin menghapus data ini?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
+                    <?php echo anchor('test/hapusData/'.$users->id_pengaduan,'<button type="button" class="btn btn-danger">ya</button>')?> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+
+    <!-- Modal untuk edit data pengaduan-->
+    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">edit data pengaduan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php foreach($updateData as $edit) {?>
+                    <form action="<?php echo site_url('test/updatePengaduan')?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="hidden" name="idPengaduan" value="<?php echo $edit->id_pengaduan ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="#">nik</label>
+                        <input type="text" name="nik" id="nik" value="<?php echo $this->session->userdata('nik')?>" disabled autofocus="">
+                    </div>
+                    <div class="form-group">
+                        <label for="#">foto</label>
+                        <input type="file" name="foto" class="form-control-file" value="<?php echo $edit->foto ?>">
+                    </div> 
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">isi pengaduan</label>
+                        <textarea name="isiLaporan" class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $edit->isi_laporan ?>"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Simpan</button>
+                </div>
+                    </form>
+                    <?php } ?>
             </div>
         </div>
     </div>

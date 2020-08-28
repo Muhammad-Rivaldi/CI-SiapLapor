@@ -20,7 +20,7 @@
          */
         public function index()
         {
-            $data['data_pengaduan'] = $this->m_pengaduan->GetData()->result();
+            $data['data_pengaduan'] = $this->modelsystem->ambilData()->result();
             $this->load->view('data_tampil',$data);
         }
 

@@ -67,7 +67,7 @@
     </div>
     <div class="wrapper">
             <h1 class="text-secondary" style="margin-top: 20%;">Daftar berhasil!</h1><br>
-            <p align="center">kembali ke <a href="<?php echo site_url('test/login')?>" class="text-dark">login</a></p>
+            <a href="<?php echo site_url('test/login')?>" class="text-dark"><p align="center">kembali ke login</p></a>
     </div>
 </body>
 </html>

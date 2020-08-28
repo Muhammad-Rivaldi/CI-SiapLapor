@@ -2,13 +2,14 @@
     defined('BASEPATH') OR exit('No direct script access allowed');
 
     class modelsystem extends CI_Model {
+
         public function simpanData(){
             $data = array (
                 'nik' => $this->input->post('nik'),
-                'nama' =>$this->input->post('namel'),
-                'username' =>$this->input->post('username'),
+                'nama' => $this->input->post('namel'),
+                'username' => $this->input->post('username'),
                 'password' => md5($this->input->post('pw')),
-                'telp' =>$this->input->post('nohp'),
+                'telp' => $this->input->post('nohp'),
             );
             $this->db->insert('masyarakat',$data);
             header("Location:" .site_url().'/test/index3');
@@ -16,7 +17,7 @@
 
         public function simpanPengaduan()
         {
-            $foto = $_FILES['foto'];
+            $foto = $_FILES['foto']['tmp_name'];
                 if ($foto = '') {
                     // kosong
                 } else {
@@ -47,7 +48,29 @@
 
         public function ambilData()
         {
-            return $this->db->get('pengaduan');
+            $nik = $this->session->userdata('nik');
+            $query = $this->db->query("SELECT * FROM `pengaduan` WHERE `nik` = '$nik'");
+            return $query->result();
+        }
+
+        public function deleteData($id)
+        {
+            $where = array('id_pengaduan' => $id);
+            $this->db->where($where);
+            $this->db->delete('pengaduan');
+            header("Location:".base_url()."test/users_form");
+        }
+
+        public function updateData($id)
+        {
+            $where = array('id_pengaduan' => $id);
+            $this->db->where($where);
+            $this->db->update('pengaduan');
+        }
+
+        public function editPengaduan($table,$where)
+        {
+            return $this->db->get_where($table, $where);
         }
 
         public function get_user()
@@ -62,8 +85,14 @@
             return $data->num_rows();
         }
 
-        public function cek_login($table,$where) {
-            return $this->db->get_where($table,$where);
+        public function cek_login($akun) {
+            $petugas = $this->db->get_where('petugas',$akun);
+            $masyarakat = $this->db->get_where('masyarakat',$akun);
+            if ($petugas->result() == null) {
+                return $masyarakat;
+            }else{
+                return $petugas;
+            }
         }
     }
 ?>

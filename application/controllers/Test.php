@@ -23,30 +23,32 @@ class Test extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('modelsystem');
-		$this->load->model('m_pengaduan');
 		$this->load->helper(array('url', 'form')); 	
 	}
 	// 
 
 	// membuka halaman home
 	public function index() {
-		$judul['title']="SiapLapor!";
-		$this->load->view('home',$judul);
+		if ($this->session->userdata('status') == 'login') {
+            redirect('test/users_form');
+        } else if ($this->session->userdata('status') != 'login') {
+            $this->load->view('home');
+        }
 	}
 	// 
 
 	// membuka halaman login
 	public function login()
 	{
-		$judul['title']="SiapLapor!";
-		$this->load->view('login',$judul);
+		$this->load->view('login');
 	}
 	// 
 
 	// membuka halaman users
 	public function users_form()
 	{
-		$this->load->view('users');
+		$data['data_pengaduan'] = $this->modelsystem->ambilData();
+		$this->load->view('users',$data);
 	}
 
 	// membuka halaman register
@@ -61,10 +63,20 @@ class Test extends CI_Controller {
 		$this->load->view('regis_berhasil');
 	}
 	// 
+
+	// fungsi untuk menampilkan halaman jika berhasil kirim pengaduan
 	public function index4()
 	{
 		$this->load->view('berhasil-upload');
 	}
+	//
+
+	// buka halaman admin
+	public function admin()
+	{
+		$this->load->view('admin-home');
+	}
+	// 
 
 	// masuk ke model untuk simpan data
 	public function simpan_data() {
@@ -76,6 +88,23 @@ class Test extends CI_Controller {
 	public function simpan_to_pengaduan()
 	{
 		$this->modelsystem->simpanPengaduan();
+	}
+	//
+
+	//untuk hapus data 
+	public function hapusData($id)
+	{
+		$this->modelsystem->deleteData($id);
+	}
+	//
+
+	// untuk get data yang ingin di edit
+	public function editData($id)
+	{
+		$where = array('id_pengaduan' => $id);
+		$data['updateData'] = $this->modelsystem->editPengaduan('pengaduan',$where)->result();
+		$data['data_pengaduan'] = $this->modelsystem->ambilData();
+		$this->load->view('users',$data);
 	}
 	// 
 
@@ -95,23 +124,40 @@ class Test extends CI_Controller {
 			'username' => $usernames,
 			'password' => md5($passwords)
 		);
-		$cek = $this->modelsystem->cek_login("masyarakat",$where)->num_rows();
+		$cek = $this->modelsystem->cek_login($where)->num_rows();
 		
-
 		if ($cek>0) {
-			$nama = $this->modelsystem->cek_login("masyarakat",$where)->row(0)->nama;
-			$nik = $this->modelsystem->cek_login("masyarakat",$where)->row(0)->nik;
-			$data_session = array(
-				'usernama' => $usernames,
-				'status' => 'login',
-				'nama' => $nama,
-				'nik' => $nik
-			);
-			$this->session->set_userdata($data_session);
-			if ($this->session->userdata('status')=='login') {
-				header("Location:".site_url()."/test/users_form");
+			$role = $this->modelsystem->cek_login($where)->row(0)->level;
+			if ($role == 'admin' || $role == 'petugas') {
+				$rule = $this->modelsystem->cek_login($where)->row(0)->level;
+				$id = $this->modelsystem->cek_login($where)->row(0)->id_petugas;
+				$data_session = array(
+                    'id_petugas' => $id,
+                    'username' => $usernames,
+                    'level' => $rule,
+                    'status' => 'login'
+				);
+				$this->session->set_userdata($data_session);
+				if ($this->session->userdata('status')=='login') {
+					header("Location:".site_url()."/test/admin");
+				} else {
+					header("Location:".site_url()."/test/index");
+				}
 			} else {
-				echo 'gagal login';
+				$nama = $this->modelsystem->cek_login($where)->row(0)->nama;
+				$nik = $this->modelsystem->cek_login($where)->row(0)->nik;
+				$data_session = array(
+					'usernama' => $usernames,
+					'status' => 'login',
+					'nama' => $nama,
+					'nik' => $nik
+				);
+				$this->session->set_userdata($data_session);
+				if ($this->session->userdata('status')=='login') {
+					header("Location:".site_url()."/test/users_form");
+				} else {
+					echo 'gagal login';
+				}
 			}
 		} else {
 			header("Location:".base_url()."");
