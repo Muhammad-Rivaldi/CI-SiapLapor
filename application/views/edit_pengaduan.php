@@ -78,7 +78,14 @@
                 <input type="file" name="foto" class="form-control-file" value="<?php echo $edit->foto?>">
                 <label for="exampleFormControlTextarea1">isi pengaduan</label>
                 <textarea name="isiLaporan" class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $edit->isi_laporan ?>"></textarea><br>
-                <button class="bg-secondary" type="submit">simpan</button>
+                <div class="row">
+                    <div class="col">
+                        <button class="bg-secondary" type="submit">simpan</button>
+                    </div>
+                    <div class="col">
+                    <a href="<?php echo site_url('test/users_form')?>"><button class="bg-danger" type="button">batal</button></a>
+                    </div>
+                </div>
             </form>
         <?php } ?>
     </div>

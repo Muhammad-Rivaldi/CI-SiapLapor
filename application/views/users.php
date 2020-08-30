@@ -66,7 +66,7 @@
                             <input type="text" name="nik" id="nik" value="<?php echo $this->session->userdata('nik')?>" disabled autofocus="">
                         </div>
                         <div class="form-group">
-                            <label for="#">foto <h6>(.jpg|.png|.gif)</h6></label>
+                            <label for="#">lampirkan dokumentasi <h6>(.jpg|.png|.gif)</h6></label>
                             <input type="file" name="foto" class="form-control-file"/>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
                                 <td><?php echo $users->tgl_pengaduan ?></td>
                                 <td><?php echo $users->nik ?></td>
                                 <td><?php echo $users->isi_laporan ?></td>
-                                <td><button class="btn" data-toggle="modal" data-target="#gambar"><img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail" style="width: 100px;height: 100px;"></button></td>
+                                <td><button class="btn" data-toggle="modal" data-target="#gambar"><img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail" style="width: 20%;"></button></td>
                                 <td><?php echo $users->status ?></td>
                                 <td>
                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"><i class="fa fa-trash"></i></button>

@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Test extends CI_Controller {
-
 	/**
 	 * Index Page for this controller.
 	 *
@@ -19,13 +18,12 @@ class Test extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 
-	// konek ke modelsystem.php 
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('modelsystem');
 		$this->load->helper(array('url', 'form')); 	
 	}
-	// 
+
 
 	// membuka halaman home
 	public function index() {
@@ -88,7 +86,11 @@ class Test extends CI_Controller {
 	// buka halaman admin
 	public function admin()
 	{
-		$this->load->view('admin-home');
+		if($num = $this->modelsystem->HitungData1())
+		{
+			$data['hasil'] = $num;
+		}
+		$this->load->view('admin-home',$data);
 	}
 	// 
 
@@ -149,9 +151,9 @@ class Test extends CI_Controller {
 			$role = $this->modelsystem->cek_login($where)->row(0)->level;
 			if ($role == 'admin' || $role == 'petugas') {
 				$rule = $this->modelsystem->cek_login($where)->row(0)->level;
-				$id = $this->modelsystem->cek_login($where)->row(0)->id_petugas;
+				$nama = $this->modelsystem->cek_login($where)->row(0)->nama_petugas;
 				$data_session = array(
-                    'id_petugas' => $id,
+                    'nama' => $nama,
                     'username' => $usernames,
                     'level' => $rule,
                     'status' => 'login'

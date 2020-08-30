@@ -11,8 +11,12 @@
                 'password' => md5($this->input->post('pw')),
                 'telp' => $this->input->post('nohp'),
             );
-            $this->db->insert('masyarakat',$data);
-            header("Location:" .site_url().'/test/index3');
+            if (!$data == '') {
+                $this->db->insert('masyarakat',$data);
+                header("Location:" .site_url().'/test/index3');
+            } else {
+                echo "gagal regis";
+            }
         }
 
         // simpan data admin
@@ -68,6 +72,13 @@
             $nik = $this->session->userdata('nik');
             $query = $this->db->query("SELECT * FROM `pengaduan` WHERE `nik` = '$nik'");
             return $query->result();
+        }
+
+        // hitung data berdasarkan status 0
+        public function HitungData1()
+        {
+            $this->db->where('status', '0');
+            return $this->db->count_all_results('pengaduan');
         }
 
         // hapus pengaduan
