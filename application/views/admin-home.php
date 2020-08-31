@@ -20,6 +20,10 @@
         <meta name="theme-color" content="#563d7c">
         <!--  -->
 
+        <!-- font awesome -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!--  -->
+
         <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -52,7 +56,7 @@
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <input class="form-control form-control-light w-100" type="text" style="font-size: large;" value="<?php echo $this->session->userdata('nama')?> | <?php echo $this->session->userdata('level')?>" disabled aria-label="Search">
+            <input class="form-control form-control-light w-100" type="text" style="font-size: large;" value="<?php echo $this->session->userdata('nama_petugas')?> | <?php echo $this->session->userdata('level')?>" disabled aria-label="Search">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
                     <a href="<?php echo site_url('test/logout')?>"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Keluar</button></a>
@@ -67,49 +71,52 @@
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">
-                        <span data-feather="home"></span>
-                        Dashboard <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="file"></span>
-                        Pengaduan
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="shopping-cart"></span>
-                        Products
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="users"></span>
-                        Customers
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="bar-chart-2"></span>
-                        Reports
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="layers"></span>
-                        Integrations
-                        </a>
-                    </li>
+                        <li class="nav-item border-bottom">
+                            <a class="nav-link active" href="<?php echo site_url('test/admin')?>">
+                            <span data-feather="home"></span>
+                            Dashboard <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Pengaduan</span>
+                        </h6>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru')?>">
+                            <span data-feather="list"></span>
+                            baru
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo site_url('test/pengaduanProses')?>">
+                            <span data-feather="clipboard"></span>
+                            proses
+                            </a>
+                        </li>
+                        <li class="nav-item border-bottom">
+                            <a class="nav-link" href="<?php echo site_url('test/pengaduanSelesai')?>">
+                            <span data-feather="check"></span>
+                            selesai
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                            <span data-feather="bar-chart-2"></span>
+                            Reports
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                            <span data-feather="layers"></span>
+                            Integrations
+                            </a>
+                        </li>
                     </ul>
                     
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span>Saved reports</span>
-                    <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                        <span data-feather="plus-circle"></span>
-                    </a>
+                        <span>Saved reports</span>
+                        <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+                            <span data-feather="plus-circle"></span>
+                        </a>
                     </h6>
                     <ul class="nav flex-column mb-2">
                     <li class="nav-item">
@@ -161,17 +168,17 @@
                     <div class="container" style="margin-left: 5%;margin-top: 5%;">
                         <div class="row">
                             <div class="col">
-                                <a href=""><button type="button" class="btn btn-secondary btn-lg" style="width: 100%;"><?php echo $hasil;?><br>pengaduan baru</button></a>
+                                <a href="<?php echo site_url('test/pengaduanBaru')?>"><button type="button" class="btn btn-danger btn-lg" style="width: 100%;"><?php echo $hasil;?><br>pengaduan baru</button></a>
                             </div>
                         </div>
-                        <div class="row mt-2">
+                        <div class="row mt-5">
                             <div class="col-sm">
-                                <a href=""><button type="button" class="btn btn-muted btn-lg" style="width: 100%;"><?php echo $hasil;?><br>pengaduan baru</button></a>
+                                <a href=""><button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><?php echo $hasil;?><br>pengaduan proses</button></a>
                             </div>
                         </div>
-                        <div class="row mt-2">
+                        <div class="row mt-5">
                             <div class="col-sm">
-                                <a href=""><button type="button" class="btn btn-black-50 btn-lg" style="width: 100%;"><?php echo $hasil;?><br>pengaduan baru</button></a>
+                                <a href=""><button type="button" class="btn btn-success btn-lg" style="width: 100%;"><?php echo $hasil;?><br>pengaduan selesai</button></a>
                             </div>
                         </div>
                     </div>

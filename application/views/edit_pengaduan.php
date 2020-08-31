@@ -74,7 +74,7 @@
                 <input type="hidden" name="id_pengaduan" value="<?php echo $edit->id_pengaduan ?>">
                 <label for="#">NIK</label>
                 <input type="text" name="nik" placeholder="masukan nik" autofocus="" value="<?php echo $edit->nik ?>" disabled>
-                <label for="#">foto <h6>(.jpg|.png|.gif)</h6></label>
+                <label for="#">foto<span class="text-danger"> wajib*</span> <h6>(.jpg|.png|.gif)</h6></label>
                 <input type="file" name="foto" class="form-control-file" value="<?php echo $edit->foto?>">
                 <label for="exampleFormControlTextarea1">isi pengaduan</label>
                 <textarea name="isiLaporan" class="form-control" id="exampleFormControlTextarea1" rows="3" value="<?php echo $edit->isi_laporan ?>"></textarea><br>

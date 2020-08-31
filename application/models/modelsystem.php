@@ -74,6 +74,13 @@
             return $query->result();
         }
 
+        // tampil data pengaduan berdasarkan status 0
+        public function tampil_pengaduanbaru()
+        {
+            $query = $this->db->query("SELECT * FROM `pengaduan` WHERE `status` = '0'");
+            return $query->result();
+        }
+
         // hitung data berdasarkan status 0
         public function HitungData1()
         {

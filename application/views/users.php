@@ -66,7 +66,7 @@
                             <input type="text" name="nik" id="nik" value="<?php echo $this->session->userdata('nik')?>" disabled autofocus="">
                         </div>
                         <div class="form-group">
-                            <label for="#">lampirkan dokumentasi <h6>(.jpg|.png|.gif)</h6></label>
+                            <label for="#">lampirkan dokumentasi <p class="text-danger">*wajib</p> <h6>(.jpg|.png|.gif)</h6></label>
                             <input type="file" name="foto" class="form-control-file"/>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
     <h1>pengaduan saya</h1><br>
     <!-- menampilkan pengaduan berdasarkan id user login -->
     <div class="container">
-        <table class="table table-striped">
+        <table class="table table-striped text-center">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
@@ -111,12 +111,19 @@
                                 <td><?php echo $users->tgl_pengaduan ?></td>
                                 <td><?php echo $users->nik ?></td>
                                 <td><?php echo $users->isi_laporan ?></td>
-                                <td><button class="btn" data-toggle="modal" data-target="#gambar"><img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail" style="width: 20%;"></button></td>
+                                <td><button class="btn" data-toggle="modal" data-target="#gambar"><img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail" style="width: 30%;"></button></td>
                                 <td><?php echo $users->status ?></td>
-                                <td>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"><i class="fa fa-trash"></i></button>
-                                    <?php echo anchor('test/editData/'.$users->id_pengaduan,'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>')?> 
-                                </td>
+                                <?php if ($users->status == '0') {?>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"><i class="fa fa-trash"></i></button>
+                                        <?php echo anchor('test/editData/'.$users->id_pengaduan,'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>')?> 
+                                    </td>
+                                <?php } else { ?>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus" disabled><i class="fa fa-trash"></i></button>
+                                        <?php echo anchor('test/editData/'.$users->id_pengaduan,'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit" disabled><i class="fa fa-edit"></i></button>')?> 
+                                    </td>
+                                <?php } ?>
                             </tr>
                     <?php 
                         } 
@@ -160,7 +167,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                <img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail">
+                    <?php if ($users->foto = $users->id_pengaduan) { ?>
+                        <img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail">
+                    <?php } ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">tutup</button>

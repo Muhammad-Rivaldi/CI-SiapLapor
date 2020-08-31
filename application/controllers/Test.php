@@ -31,7 +31,8 @@ class Test extends CI_Controller {
             redirect('test/users_form');
         } else if ($this->session->userdata('status') != 'login') {
             $this->load->view('home');
-        }
+		}
+		$this->load->view('home');
 	}
 	// 
 
@@ -42,30 +43,22 @@ class Test extends CI_Controller {
 	}
 	// 
 
-	// membuka halaman users
-	public function users_form()
-	{
-		$data['data_pengaduan'] = $this->modelsystem->ambilData();
-		$this->load->view('users',$data);
-	}
-
 	// membuka halaman register
 	public function index2() {
 		$judul['title']="SiapLapor!";
 		$this->load->view('register',$judul);
 	}
-	// 
+	//
+
+	// masuk ke model untuk simpan data register user
+	public function simpan_data() {
+		$this->modelsystem->simpanData();
+	}
+	//
 
 	// membuka halaman sukses regis
 	public function index3() {
 		$this->load->view('regis_berhasil');
-	}
-	// 
-
-	// fungsi untuk menampilkan halaman jika berhasil kirim pengaduan
-	public function index4()
-	{
-		$this->load->view('berhasil-upload');
 	}
 	//
 
@@ -83,60 +76,6 @@ class Test extends CI_Controller {
 	}
 	//
 
-	// buka halaman admin
-	public function admin()
-	{
-		if($num = $this->modelsystem->HitungData1())
-		{
-			$data['hasil'] = $num;
-		}
-		$this->load->view('admin-home',$data);
-	}
-	// 
-
-	// masuk ke model untuk simpan data
-	public function simpan_data() {
-		$this->modelsystem->simpanData();
-	}
-	//
-
-	// untuk simpan data di tabel pengaduan
-	public function simpan_to_pengaduan()
-	{
-		$this->modelsystem->simpanPengaduan();
-	}
-	//
-
-	//untuk hapus data 
-	public function hapusData($id)
-	{
-		$this->modelsystem->deleteData($id);
-	}
-	//
-
-	// untuk get data yang ingin di edit
-	public function editData($id)
-	{
-		$where = array('id_pengaduan' => $id);
-		$data['updateData'] = $this->modelsystem->editPengaduan('pengaduan',$where)->result();
-		$this->load->view('edit_pengaduan',$data);
-	}
-	//
-
-	// edit pengaduan
-	public function updatePengaduan()
-	{
-		$this->modelsystem->updateData();
-	}
-
-	// membuka halaman data
-	public function base() {
-		$data['user'] = $this->modelsystem->get_user();
-		$data['c_user'] = $this->modelsystem->count_user();
-		$this->load->view('data_tampil', $data);
-	}
-	// 
-
 	// untuk proses login
 	public function aksi_login() {
 		$usernames = $this->input->post('username');
@@ -151,9 +90,9 @@ class Test extends CI_Controller {
 			$role = $this->modelsystem->cek_login($where)->row(0)->level;
 			if ($role == 'admin' || $role == 'petugas') {
 				$rule = $this->modelsystem->cek_login($where)->row(0)->level;
-				$nama = $this->modelsystem->cek_login($where)->row(0)->nama_petugas;
+				$nama_petugas = $this->modelsystem->cek_login($where)->row(0)->nama_petugas;
 				$data_session = array(
-                    'nama' => $nama,
+                    'nama_petugas' => $nama_petugas,
                     'username' => $usernames,
                     'level' => $rule,
                     'status' => 'login'
@@ -190,6 +129,85 @@ class Test extends CI_Controller {
 	public function logout() {
 		$this->session->sess_destroy();
 		redirect(base_url());
+	}
+	// 
+
+	// buka halaman dashboard admin
+	public function admin()
+	{
+		if($num = $this->modelsystem->HitungData1())
+		{
+			$data['hasil'] = $num;
+		}
+		$this->load->view('admin-home',$data);
+	}
+	//
+
+	// membuka halaman pengaduan baru di admin
+	public function pengaduanBaru()
+	{
+		$data['pengaduan_baru'] = $this->modelsystem->tampil_pengaduanbaru();
+		$this->load->view('pengaduanBaru-admin',$data);
+	}
+
+	// membuka halaman pengaduan user
+	public function users_form()
+	{
+		$data['data_pengaduan'] = $this->modelsystem->ambilData();
+		$this->load->view('users',$data);
+	}
+
+	// fungsi untuk menampilkan halaman jika berhasil kirim pengaduan
+	public function index4()
+	{
+		$this->load->view('berhasil-upload');
+	}
+	//
+
+	// untuk simpan data di tabel pengaduan
+	public function simpan_to_pengaduan()
+	{
+		$this->modelsystem->simpanPengaduan();
+	}
+	//
+
+	//untuk hapus data pengaduan
+	public function hapusData($id)
+	{
+		$this->modelsystem->deleteData($id);
+	}
+	//
+
+	// untuk get data pengaduan yang ingin di edit
+	public function editData($id)
+	{
+		$where = array('id_pengaduan' => $id);
+		$data['updateData'] = $this->modelsystem->editPengaduan('pengaduan',$where)->result();
+		$this->load->view('edit_pengaduan',$data);
+	}
+	//
+
+	// edit pengaduan
+	public function updatePengaduan()
+	{
+		$this->modelsystem->updateData();
+	}
+
+	// untuk export file ke pdf
+	public function exportToPdf()
+	{
+		$data['pengaduan'] = $this->modelsystem->tampil_pengaduanbaru();
+		$this->load->library('pdf');
+		$this->pdf->setPaper('A4','potrait');
+		$this->pdf->filename = "data-pengaduan-baru". date('d-m-y') .".pdf";
+		$this->pdf->load_view('printPdf',$data);
+	}
+
+	// membuka halaman data
+	public function base() {
+		$data['user'] = $this->modelsystem->get_user();
+		$data['c_user'] = $this->modelsystem->count_user();
+		$this->load->view('data_tampil', $data);
 	}
 	// 
 }
