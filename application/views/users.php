@@ -48,7 +48,7 @@
     <!-- konten -->
     <div class="container mt-3" align="center">
         <span><i class="fas fa-user-circle" style="width: 100px;height: 100px;border-radius: 50%;"></i></span>
-        <h1><?php echo $this->session->userdata('nama') ?></h1>
+        <h1><?php echo $this->session->userdata('nama_user') ?></h1>
         <h3>user</h3>
     </div>
     <br>

@@ -59,7 +59,7 @@
             <input class="form-control form-control-light w-100" type="text" style="font-size: large;" value="<?php echo $this->session->userdata('nama_petugas')?> | <?php echo $this->session->userdata('level')?>" disabled aria-label="Search">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <a href="<?php echo site_url('test/logout')?>"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Keluar</button></a>
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#exampleModal">Keluar</button>
                 </li>
             </ul>
         </nav>
@@ -224,6 +224,28 @@
                         </table>
                     </div> -->
                 </main>
+            </div>
+        </div>
+        <!--  -->
+
+        <!-- Modal untuk exit-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">konfirmasi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>apakah anda ingin keluar dari situs ini?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
+                        <a href="<?php echo site_url('test/logout')?>"><button type="button" class="btn btn-primary">Ya</button></a> 
+                    </div>
+                </div>
             </div>
         </div>
         <!--  -->

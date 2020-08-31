@@ -23,7 +23,7 @@
                     <td><?php echo $users->tgl_pengaduan ?></td>
                     <td><?php echo $users->nik ?></td>
                     <td><?php echo $users->isi_laporan ?></td>
-                    <td><button class="btn" data-toggle="modal" data-target="#gambar"><img src="<?php echo base_url('assets/berkas/') . $users->foto ?>" class="img-thumbnail" style="width: 20%;"></button></td>
+                    <td><img src="<?php echo base_url('assets/berkas/') . $users->foto ?>" class="img-thumbnail" style="width: 30%;"></td>
                     <td><?php echo $users->status ?></td>
                 </tr>
             <?php
