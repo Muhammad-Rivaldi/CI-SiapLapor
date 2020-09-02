@@ -59,7 +59,7 @@
             <input class="form-control form-control-light w-100" type="text" style="font-size: large;" value="<?php echo $this->session->userdata('nama_petugas')?> | <?php echo $this->session->userdata('level')?>" disabled aria-label="Search">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#exampleModal">Keluar</button>
+                    <button class="btn btn-outline-danger my-2 my-sm-0" data-toggle="modal" data-target="#exampleModal" type="submit">Keluar</button>
                 </li>
             </ul>
         </nav>
@@ -77,7 +77,7 @@
                             Dashboard <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
                             <span>Pengaduan</span>
                         </h6>
                         <li class="nav-item">
@@ -98,18 +98,6 @@
                             selesai
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                            <span data-feather="bar-chart-2"></span>
-                            Reports
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                            <span data-feather="layers"></span>
-                            Integrations
-                            </a>
-                        </li>
                     </ul>
                     
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -118,32 +106,6 @@
                             <span data-feather="plus-circle"></span>
                         </a>
                     </h6>
-                    <ul class="nav flex-column mb-2">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="file-text"></span>
-                        Current month
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="file-text"></span>
-                        Last quarter
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="file-text"></span>
-                        Social engagement
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                        <span data-feather="file-text"></span>
-                        Year-end sale
-                        </a>
-                    </li>
-                    </ul>
                 </div>
                 </nav>
                 <!--  -->
@@ -152,77 +114,26 @@
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Dashboard</h1>
-                        <div class="btn-toolbar mb-2 mb-md-0">
-                            <!-- <div class="btn-group mr-2">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-                            </div>
-                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                                <span data-feather="calendar"></span>
-                                This week
-                            </button> -->
-                        </div>
                     </div>
 
                     <!-- tampil hitung data pengaduan -->
                     <div class="container" style="margin-left: 5%;margin-top: 5%;">
                         <div class="row">
                             <div class="col">
-                                <a href="<?php echo site_url('test/pengaduanBaru')?>"><button type="button" class="btn btn-danger btn-lg" style="width: 100%;"><?php echo $hasil;?><br>pengaduan baru</button></a>
+                                <a href="<?php echo site_url('test/pengaduanBaru')?>"><button type="button" class="btn btn-danger btn-lg" style="width: 100%;"><?php echo $hasil1;?><br>pengaduan baru</button></a>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <div class="col-sm">
-                                <a href=""><button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><?php echo $hasil;?><br>pengaduan proses</button></a>
+                                <a href="<?php echo site_url('test/pengaduanProses')?>"><button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><?php echo $hasil2;?><br>pengaduan proses</button></a>
                             </div>
                         </div>
                         <div class="row mt-5">
                             <div class="col-sm">
-                                <a href=""><button type="button" class="btn btn-success btn-lg" style="width: 100%;"><?php echo $hasil;?><br>pengaduan selesai</button></a>
+                                <a href=""><button type="button" class="btn btn-success btn-lg" style="width: 100%;"><?php echo $hasil3;?><br>pengaduan selesai</button></a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- <h2>Section title</h2>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">ID Pegaduan</th>
-                                    <th scope="col">Tanggal pengaduan</th>
-                                    <th scope="col">NIK</th>
-                                    <th scope="col">Isi Laporan</th>
-                                    <th scope="col">Foto</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Modifikasi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    $no=1;
-                                        foreach ($hasil as $users) {
-                                            if($users->status == "0"){
-                                ?>
-                                        <tr>
-                                            <td><?php echo $no++ ;?></td>
-                                            <td><?php echo $users->id_pengaduan ?></td>
-                                            <td><?php echo $users->tgl_pengaduan ?></td>
-                                            <td><?php echo $users->nik ?></td>
-                                            <td><?php echo $users->isi_laporan ?></td>
-                                            <td><button class="btn" data-toggle="modal" data-target="#gambar"><img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail" style="width: 20%;"></button></td>
-                                            <td><?php echo $users->status ?></td>
-                                            <td>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"><i class="fa fa-trash"></i></button>
-                                                <?php echo anchor('test/editData/'.$users->id_pengaduan,'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit"><i class="fa fa-edit"></i></button>')?> 
-                                            </td>
-                                        </tr>
-                                <?php 
-                                    } }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div> -->
                 </main>
             </div>
         </div>

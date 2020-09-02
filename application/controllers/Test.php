@@ -31,11 +31,16 @@ class Test extends CI_Controller
 	public function index()
 	{
 		if ($this->session->userdata('status') == 'login') {
-			redirect('test/users_form');
+			if ($this->session->userdata('level') == 'admin') {
+				redirect('test/admin');
+			} else if($this->session->userdata('level') == 'petugas') {
+				redirect('test/admin');
+			} else {
+				redirect('test/users_form');
+			}
 		} else if ($this->session->userdata('status') != 'login') {
 			$this->load->view('home');
 		}
-		$this->load->view('home');
 	}
 	// 
 
@@ -143,8 +148,14 @@ class Test extends CI_Controller
 	// buka halaman dashboard admin
 	public function admin()
 	{
-		if ($num = $this->modelsystem->HitungData1()) {
-			$data['hasil'] = $num;
+		if ($num1 = $this->modelsystem->HitungData1()) {
+			$data['hasil1'] = $num1;
+		}
+		if ($num2 = $this->modelsystem->HitungData2()) {
+			$data['hasil2'] = $num2;
+		}
+		if ($num3 = $this->modelsystem->HitungData3()) {
+			$data['hasil3'] = $num3;
 		}
 		$this->load->view('admin-home', $data);
 	}
@@ -153,8 +164,15 @@ class Test extends CI_Controller
 	// membuka halaman pengaduan baru di admin
 	public function pengaduanBaru()
 	{
-		$data['pengaduan_baru'] = $this->modelsystem->tampil_pengaduanbaru();
-		$this->load->view('pengaduanBaru-admin', $data);
+		$data['pengaduan'] = $this->modelsystem->tampil_pengaduanbaru();
+		$this->load->view('admin-pengaduan-baru', $data);
+	}
+
+	// membuka halaman pengaduan baru di admin
+	public function pengaduanProses()
+	{
+		$data['pengaduan'] = $this->modelsystem->tampil_pengaduan_proses();
+		$this->load->view('admin-pengaduan-proses', $data);
 	}
 
 	// membuka halaman pengaduan user
@@ -206,7 +224,7 @@ class Test extends CI_Controller
 		$data['pengaduan'] = $this->modelsystem->tampil_pengaduanbaru();
 		$this->load->library('pdf');
 		$this->pdf->setPaper('A4', 'potrait');
-		$this->pdf->filename = "data-pengaduan-baru" . date('d-m-y') . ".pdf";
+		$this->pdf->filename = "data-pengaduan-baru-" . date('d-m-y') . ".pdf";
 		$this->pdf->load_view('printPdf', $data);
 	}
 

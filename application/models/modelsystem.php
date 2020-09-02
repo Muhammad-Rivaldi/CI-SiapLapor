@@ -81,10 +81,31 @@
             return $query->result();
         }
 
+        // tampil data pengaduan berdasarkan status proses
+        public function tampil_pengaduan_proses()
+        {
+            $query = $this->db->query("SELECT * FROM `pengaduan` WHERE `status` = 'proses'");
+            return $query->result();
+        }
+
         // hitung data berdasarkan status 0
         public function HitungData1()
         {
             $this->db->where('status', '0');
+            return $this->db->count_all_results('pengaduan');
+        }
+
+        // hitung data berdasarkan status proses
+        public function HitungData2()
+        {
+            $this->db->where('status', 'proses');
+            return $this->db->count_all_results('pengaduan');
+        }
+
+        // hitung data berdasarkan status selesai
+        public function HitungData3()
+        {
+            $this->db->where('status', 'selesai');
             return $this->db->count_all_results('pengaduan');
         }
 
