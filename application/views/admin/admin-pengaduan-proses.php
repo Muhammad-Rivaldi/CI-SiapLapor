@@ -114,7 +114,7 @@
                             <span>Tanggapan</span>
                         </h6>
                         <li class="nav-item border-bottom">
-                            <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                            <a class="nav-link" href="<?php echo site_url('test/tanggapan') ?>">
                                 <i class="fas fa-reply  "></i>
                                 tanggapan
                             </a>
@@ -198,9 +198,9 @@
     </div>
     <!--  -->
 
-    <!-- Modal untuk hapus data-->
-    <div class="modal fade" id="hapus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!-- Modal untuk exit-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">konfirmasi</h5>
@@ -209,15 +209,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>apakah anda ingin menghapus data ini?</p>
+                    <p>apakah anda ingin keluar dari situs ini?</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
-                    <?php echo anchor('test/hapusData/' . $users->id_pengaduan, '<button type="button" class="btn btn-danger">ya</button>') ?>
+                    <a href="<?php echo site_url('test/logout') ?>"><button type="button" class="btn btn-primary">Ya</button></a>
                 </div>
             </div>
         </div>
     </div>
+    <!--  -->
 
 
     <!-- Optional JavaScript -->

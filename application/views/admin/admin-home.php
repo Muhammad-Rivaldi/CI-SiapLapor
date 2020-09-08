@@ -114,7 +114,7 @@
                             <span>Tanggapan</span>
                         </h6>
                         <li class="nav-item border-bottom">
-                            <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                            <a class="nav-link" href="<?php echo site_url('test/tanggapan') ?>">
                                 <i class="fas fa-reply  "></i>
                                 tanggapan
                             </a>

@@ -114,7 +114,7 @@
                             <span>Tanggapan</span>
                         </h6>
                         <li class="nav-item border-bottom">
-                            <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                            <a class="nav-link" href="<?php echo site_url('test/tanggapan') ?>">
                                 <i class="fas fa-reply  "></i>
                                 tanggapan
                             </a>
@@ -145,7 +145,7 @@
             <!-- konten -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Pengaduan proses</h1>
+                    <h1 class="h2">Pengaduan selesai</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <a href="<?php echo site_url('test/exportToPdf') ?>"><button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-file"></i> export .pdf</button></a>
@@ -189,6 +189,28 @@
                     </table>
                 </div>
             </main>
+        </div>
+    </div>
+    <!--  -->
+
+    <!-- Modal untuk exit-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">konfirmasi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>apakah anda ingin keluar dari situs ini?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
+                    <a href="<?php echo site_url('test/logout') ?>"><button type="button" class="btn btn-primary">Ya</button></a>
+                </div>
+            </div>
         </div>
     </div>
     <!--  -->

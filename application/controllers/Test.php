@@ -173,7 +173,7 @@ class Test extends CI_Controller
 		if ($num3 = $this->modelsystem->HitungData3()) {
 			$data['hasil3'] = $num3;
 		}
-		$this->load->view('petugas/admin-home', $data);
+		$this->load->view('admin/admin-home', $data);
 	}
 	//
 
@@ -196,6 +196,13 @@ class Test extends CI_Controller
 	{
 		$data['pengaduan'] = $this->modelsystem->tampil_pengaduan_selesai();
 		$this->load->view('admin/admin-pengaduan-selesai', $data);
+	}
+
+	// membuka halaman tanggapan di admin
+	public function tanggapan()
+	{
+		$data['tanggapan'] = $this->modelsystem->tampil_tanggapan();
+		$this->load->view('admin/admin-tanggapan', $data);
 	}
 
 	// membuka halaman pengaduan user

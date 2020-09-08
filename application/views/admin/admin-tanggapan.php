@@ -91,7 +91,7 @@
                                 <span>Pengaduan</span>
                             </h6>
                             <li class="nav-item">
-                                <a class="nav-link active" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                                <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
                                     <i class="fa fa-list"></i>
                                     baru
                                 </a>
@@ -112,7 +112,7 @@
                                 <span>Tanggapan</span>
                             </h6>
                             <li class="nav-item border-bottom">
-                                <a class="nav-link" href="<?php echo site_url('test/tanggapan') ?>">
+                                <a class="nav-link active" href="<?php echo site_url('test/tanggapan') ?>">
                                     <i class="fas fa-reply"></i>
                                     tanggapan
                                 </a>
@@ -143,7 +143,7 @@
                 <!-- konten -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Pengaduan baru</h1>
+                        <h1 class="h2">Tanggapan</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group mr-2">
                                 <a href="<?php echo site_url('test/exportToPdf')?>"><button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-file"></i> export .pdf</button></a>
@@ -158,32 +158,25 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">ID Pegaduan</th>
-                                    <th scope="col">Tanggal pengaduan</th>
-                                    <th scope="col">NIK</th>
-                                    <th scope="col">Isi Laporan</th>
-                                    <th scope="col">Foto</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Modifikasi</th>
+                                    <th scope="col">ID tanggapan</th>
+                                    <th scope="col">ID pengaduan</th>
+                                    <th scope="col">tanggal tanggapan</th>
+                                    <th scope="col">tanggapan</th>
+                                    <th scope="col">ID petugas</th>
                                 </tr>
                             </thead>  
                             <tbody>
                                 <?php
                                     $no=1;
-                                        foreach ($pengaduan as $users) {
+                                        foreach ($tanggapan as $users) {
                                 ?>
                                         <tr>
                                             <td><?php echo $no++ ;?></td>
+                                            <td><?php echo $users->id_tanggapan ?></td>
                                             <td><?php echo $users->id_pengaduan ?></td>
-                                            <td><?php echo $users->tgl_pengaduan ?></td>
-                                            <td><?php echo $users->nik ?></td>
-                                            <td><?php echo $users->isi_laporan ?></td>
-                                            <td><button class="btn" data-toggle="modal" data-target="#gambar"><img src="<?php echo base_url('assets/berkas/').$users->foto?>" class="img-thumbnail" style="width: 20%;"></button></td>
-                                            <td><?php echo $users->status ?></td>
-                                            <td>
-                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"><i class="fa fa-trash"></i></button>
-                                                <?php echo anchor('test/editData/'.$users->id_pengaduan,'<button type="button" class="btn btn-primary"><i class="fa fa-search-plus"></i></button>')?> 
-                                            </td>
+                                            <td><?php echo $users->tgl_tanggapan ?></td>
+                                            <td><?php echo $users->tanggapan ?></td>
+                                            <td><?php echo $users->id_petugas ?></td>
                                         </tr>
                                 <?php 
                                     }
@@ -217,6 +210,7 @@
             </div>
         </div>
         <!--  -->
+        
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -103,6 +103,13 @@
             return $query->result();
         }
 
+        // tampil data tanggapan
+        public function tampil_tanggapan()
+        {
+            $query = $this->db->query("SELECT * FROM `tanggapan`");
+            return $query->result();
+        }
+
         // hitung data berdasarkan status 0
         public function HitungData1()
         {
