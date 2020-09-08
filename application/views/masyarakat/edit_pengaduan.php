@@ -89,5 +89,6 @@
             </form>
         <?php } ?>
     </div>
+    <?=$this->session->flashdata('modal')?>
 </body>
 </html>

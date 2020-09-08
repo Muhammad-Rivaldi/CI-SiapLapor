@@ -1,0 +1,20 @@
+    {
+        "name": "Bootstrap",
+        "short_name": "Bootstrap",
+        "icons": [
+        {
+            "src": "/docs/4.5/assets/img/favicons/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/docs/4.5/assets/img/favicons/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        }
+        ],
+        "start_url": "/?utm_source=a2hs",
+        "theme_color": "#563d7c",
+        "background_color": "#563d7c",
+        "display": "standalone"
+    }

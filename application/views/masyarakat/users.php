@@ -57,7 +57,7 @@
     <div class="container mt-3" align="center">
         <span><i class="fas fa-user-circle" style="width: 100px;height: 100px;border-radius: 50%;"></i></span>
         <h1><?php echo $this->session->userdata('nama_user') ?></h1>
-        <h3>user</h3>
+        <h3>Masyarakat</h3>
     </div>
     <br>
     <hr>
@@ -77,7 +77,7 @@
                         <label for="#">lampirkan dokumentasi <p class="text-danger">*wajib</p>
                             <h6>(.jpg|.png|.gif)</h6>
                         </label>
-                        <input type="file" name="foto" class="form-control-file" />
+                        <input type="file" name="foto" class="form-control-file"/>
                     </div>
                 </div>
                 <div class="col">
@@ -90,6 +90,9 @@
             </div>
         </form>
     </div>
+        <!-- alert -->
+        <?=$this->session->flashdata('modal')?>
+        <!--  -->
     <!--  -->
     <br>
     <hr>
@@ -121,7 +124,7 @@
                         <td><?php echo $users->tgl_pengaduan ?></td>
                         <td><?php echo $users->nik ?></td>
                         <td><?php echo $users->isi_laporan ?></td>
-                        <td><button class="btn" data-toggle="modal" data-target="#gambar"><img src="<?php echo base_url('assets/berkas/') . $users->foto ?>" class="img-thumbnail" style="width: 30%;"></button></td>
+                        <td><img src="<?php echo base_url('assets/berkas/') . $users->foto ?>" class="img-thumbnail" style="width: 30%;"></td>
                         <td><?php echo $users->status ?></td>
                         <?php if ($users->status == '0') { ?>
                             <td>
@@ -159,29 +162,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
                     <a href="<?php echo site_url('test/logout') ?>"><button type="button" class="btn btn-primary">Ya</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--  -->
-
-    <!-- Modal untuk preview foto pengaduan-->
-    <div class="modal fade" id="gambar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Preview Foto</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <?php if ($users->foto = $users->id_pengaduan) { ?>
-                        <img src="<?php echo base_url('assets/berkas/') . $users->foto ?>" class="img-thumbnail">
-                    <?php } ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">tutup</button>
                 </div>
             </div>
         </div>

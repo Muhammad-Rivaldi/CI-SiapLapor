@@ -9,6 +9,14 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <!--  -->
 
+        <!-- CDN bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!--  -->
+
         <!-- Favicons -->
         <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
         <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
@@ -22,6 +30,8 @@
 
         <!-- font awesome -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <!-- Place your kit's code here -->
+        <script src="https://kit.fontawesome.com/847ba36c18.js" crossorigin="anonymous"></script>
         <!--  -->
 
         <style>
@@ -66,47 +76,67 @@
         <!--  -->
 
         <div class="container-fluid">
-            <!-- sidebar -->
             <div class="row">
+                <!-- sidebar -->
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="sidebar-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item border-bottom">
-                            <a class="nav-link" href="<?php echo site_url('test/admin')?>">
-                            <span data-feather="home"></span>
-                            Dashboard<span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
-                            <span>Pengaduan</span>
-                        </h6>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="<?php echo site_url('test/pengaduanBaru')?>">
-                            <span data-feather="list"></span>
-                            baru
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo site_url('test/pengaduanProses')?>">
-                            <span data-feather="clipboard"></span>
-                            proses
-                            </a>
-                        </li>
-                        <li class="nav-item border-bottom">
-                            <a class="nav-link" href="<?php echo site_url('test/pengaduanSelesai')?>">
-                            <span data-feather="check"></span>
-                            selesai
-                            </a>
-                        </li>
-                    </ul>
-                    
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
-                        <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                </div>
+                    <div class="sidebar-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item border-bottom">
+                                <a class="nav-link" href="<?php echo site_url('test/admin') ?>">
+                                    <i class="fa fa-home"></i>
+                                    Dashboard <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
+                                <span>Pengaduan</span>
+                            </h6>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                                    <i class="fa fa-list"></i>
+                                    baru
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<?php echo site_url('test/pengaduanProses') ?>">
+                                    <i class="fa fa-clipboard"></i>
+                                    proses
+                                </a>
+                            </li>
+                            <li class="nav-item border-bottom">
+                                <a class="nav-link" href="<?php echo site_url('test/pengaduanSelesai') ?>">
+                                    <i class="fa fa-check"></i>
+                                    selesai
+                                </a>
+                            </li>
+                            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
+                                <span>Tanggapan</span>
+                            </h6>
+                            <li class="nav-item border-bottom">
+                                <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                                    <i class="fas fa-reply  "></i>
+                                    tanggapan
+                                </a>
+                            </li>
+                            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
+                                <span>Masyarakat</span>
+                            </h6>
+                            <li class="nav-item border-bottom">
+                                <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                                    <i class="fa fa-user"></i>
+                                    masyarakat
+                                </a>
+                            </li>
+                            <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted">
+                                <span>Petugas</span>
+                            </h6>
+                            <li class="nav-item border-bottom">
+                                <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                                    <i class="fas fa-user-shield"></i>
+                                    petugas
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
                 <!--  -->
 
@@ -152,7 +182,7 @@
                                             <td><?php echo $users->status ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"><i class="fa fa-trash"></i></button>
-                                                <?php echo anchor('test/editData/'.$users->id_pengaduan,'<button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button>')?> 
+                                                <?php echo anchor('test/editData/'.$users->id_pengaduan,'<button type="button" class="btn btn-primary"><i class="fa fa-search-plus"></i></button>')?> 
                                             </td>
                                         </tr>
                                 <?php 

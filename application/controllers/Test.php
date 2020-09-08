@@ -100,7 +100,22 @@ class Test extends CI_Controller
 
 		if ($cek > 0) {
 			$role = $this->modelsystem->cek_login($where)->row(0)->level;
-			if ($role == 'admin' || $role == 'petugas') {
+			if ($role == 'admin') {
+				$rule = $this->modelsystem->cek_login($where)->row(0)->level;
+				$nama_petugas = $this->modelsystem->cek_login($where)->row(0)->nama_petugas;
+				$data_session = array(
+					'nama_petugas' => $nama_petugas,
+					'username' => $usernames,
+					'level' => $rule,
+					'status' => 'login'
+				);
+				$this->session->set_userdata($data_session);
+				if ($this->session->userdata('status') == 'login') {
+					header("Location:" . site_url() . "/test/admin");
+				} else {
+					header("Location:" . site_url() . "/test/index");
+				}
+			} elseif ($role == 'petugas') {
 				$rule = $this->modelsystem->cek_login($where)->row(0)->level;
 				$nama_petugas = $this->modelsystem->cek_login($where)->row(0)->nama_petugas;
 				$data_session = array(
@@ -128,7 +143,7 @@ class Test extends CI_Controller
 				if ($this->session->userdata('status') == 'login') {
 					header("Location:" . site_url() . "/test/users_form");
 				} else {
-					echo 'gagal login';
+					header("Location:" . site_url() . "/test/index"); 
 				}
 			}
 		} else {
@@ -148,6 +163,7 @@ class Test extends CI_Controller
 	// buka halaman dashboard admin
 	public function admin()
 	{
+		$data['pengaduan'] = $this->modelsystem->tampil_pengaduan();
 		if ($num1 = $this->modelsystem->HitungData1()) {
 			$data['hasil1'] = $num1;
 		}
@@ -157,7 +173,7 @@ class Test extends CI_Controller
 		if ($num3 = $this->modelsystem->HitungData3()) {
 			$data['hasil3'] = $num3;
 		}
-		$this->load->view('admin-home', $data);
+		$this->load->view('petugas/admin-home', $data);
 	}
 	//
 
@@ -165,29 +181,36 @@ class Test extends CI_Controller
 	public function pengaduanBaru()
 	{
 		$data['pengaduan'] = $this->modelsystem->tampil_pengaduanbaru();
-		$this->load->view('admin-pengaduan-baru', $data);
+		$this->load->view('admin/admin-pengaduan-baru', $data);
 	}
 
 	// membuka halaman pengaduan baru di admin
 	public function pengaduanProses()
 	{
 		$data['pengaduan'] = $this->modelsystem->tampil_pengaduan_proses();
-		$this->load->view('admin-pengaduan-proses', $data);
+		$this->load->view('admin/admin-pengaduan-proses', $data);
+	}
+
+	// membuka halaman pengaduan selesai di admin
+	public function pengaduanSelesai()
+	{
+		$data['pengaduan'] = $this->modelsystem->tampil_pengaduan_selesai();
+		$this->load->view('admin/admin-pengaduan-selesai', $data);
 	}
 
 	// membuka halaman pengaduan user
 	public function users_form()
 	{
 		$data['data_pengaduan'] = $this->modelsystem->ambilData();
-		$this->load->view('users', $data);
+		$this->load->view('masyarakat/users', $data);
 	}
 
-	// fungsi untuk menampilkan halaman jika berhasil kirim pengaduan
-	public function index4()
-	{
-		$this->load->view('berhasil-upload');
-	}
-	//
+	// // fungsi untuk menampilkan halaman jika berhasil kirim pengaduan
+	// public function index4()
+	// {
+	// 	$this->load->view('masyarakat/berhasil-upload');
+	// }
+	// //
 
 	// untuk simpan data di tabel pengaduan
 	public function simpan_to_pengaduan()
@@ -208,7 +231,7 @@ class Test extends CI_Controller
 	{
 		$where = array('id_pengaduan' => $id);
 		$data['updateData'] = $this->modelsystem->editPengaduan('pengaduan', $where)->result();
-		$this->load->view('edit_pengaduan', $data);
+		$this->load->view('masyarakat/edit_pengaduan', $data);
 	}
 	//
 
@@ -332,12 +355,12 @@ class Test extends CI_Controller
 		$write->save('php://output');
 	}
 
-	// membuka halaman data
-	public function base()
-	{
-		$data['user'] = $this->modelsystem->get_user();
-		$data['c_user'] = $this->modelsystem->count_user();
-		$this->load->view('data_tampil', $data);
-	}
-	// 
+	// // membuka halaman data
+	// public function base()
+	// {
+	// 	$data['user'] = $this->modelsystem->get_user();
+	// 	$data['c_user'] = $this->modelsystem->count_user();
+	// 	$this->load->view('data_tampil', $data);
+	// }
+	// // 
 }
