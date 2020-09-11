@@ -57,7 +57,7 @@
                 'id_pengaduan' => null,
                 'nik' => $this->session->userdata('nik'),
 				'isi_laporan' => $this->input->post('isiLaporan'),
-				'foto' => $foto,
+				'foto' => $foto, 
                 'status' => '0'
             );
             echo $data;
@@ -107,6 +107,20 @@
         public function tampil_tanggapan()
         {
             $query = $this->db->query("SELECT * FROM `tanggapan`");
+            return $query->result();
+        }
+
+        // tampil data masyarakat
+        public function tampil_masyarakat()
+        {
+            $query = $this->db->query("SELECT * FROM `masyarakat`");
+            return $query->result();
+        }
+
+        // tampil data petugas
+        public function tampil_petugas()
+        {
+            $query = $this->db->query("SELECT * FROM `petugas`");
             return $query->result();
         }
 

@@ -205,6 +205,20 @@ class Test extends CI_Controller
 		$this->load->view('admin/admin-tanggapan', $data);
 	}
 
+	// membuka halaman masyarakat di admin
+	public function masyarakat()
+	{
+		$data['masyarakat'] = $this->modelsystem->tampil_masyarakat();
+		$this->load->view('admin/admin-masyarakat', $data);
+	}
+
+	// membuka halaman petugas di admin
+	public function petugas()
+	{
+		$data['petugas'] = $this->modelsystem->tampil_petugas();
+		$this->load->view('admin/admin-petugas', $data);
+	}
+
 	// membuka halaman pengaduan user
 	public function users_form()
 	{

@@ -53,6 +53,12 @@
     </nav>
     <!--  -->
 
+    <!-- embed -->
+        <div class="embed-responsive embed-responsive-21by9 border-bottom">
+            <iframe src="https://www.youtube.com/embed/F2Qt60oJqnA?&autoplay=1" class="embed-responsive-item" allowfullscreen></iframe>
+        </div>
+    <!--  -->
+
     <!-- konten -->
     <div class="container mt-3" align="center">
         <span><i class="fas fa-user-circle" style="width: 100px;height: 100px;border-radius: 50%;"></i></span>
@@ -77,7 +83,7 @@
                         <label for="#">lampirkan dokumentasi <p class="text-danger">*wajib</p>
                             <h6>(.jpg|.png|.gif)</h6>
                         </label>
-                        <input type="file" name="foto" class="form-control-file"/>
+                        <input type="file" name="foto" class="form-control-file" />
                     </div>
                 </div>
                 <div class="col">
@@ -90,9 +96,9 @@
             </div>
         </form>
     </div>
-        <!-- alert -->
-        <?=$this->session->flashdata('modal')?>
-        <!--  -->
+    <!-- alert -->
+    <?= $this->session->flashdata('modal') ?>
+    <!--  -->
     <!--  -->
     <br>
     <hr>

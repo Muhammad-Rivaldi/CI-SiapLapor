@@ -112,7 +112,7 @@
                                 <span>Tanggapan</span>
                             </h6>
                             <li class="nav-item border-bottom">
-                                <a class="nav-link active" href="<?php echo site_url('test/tanggapan') ?>">
+                                <a class="nav-link" href="<?php echo site_url('test/tanggapan') ?>">
                                     <i class="fas fa-reply"></i>
                                     tanggapan
                                 </a>
@@ -121,7 +121,7 @@
                                 <span>Masyarakat</span>
                             </h6>
                             <li class="nav-item border-bottom">
-                                <a class="nav-link" href="<?php echo site_url('test/masyarakat') ?>">
+                                <a class="nav-link active" href="<?php echo site_url('test/masyarakat') ?>">
                                     <i class="fa fa-user"></i>
                                     masyarakat
                                 </a>
@@ -143,7 +143,7 @@
                 <!-- konten -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2">Tanggapan</h1>
+                        <h1 class="h2">Petugas</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group mr-2">
                                 <a href="<?php echo site_url('test/exportToPdf')?>"><button type="button" class="btn btn-sm btn-outline-secondary"><i class="fa fa-file"></i> export .pdf</button></a>
@@ -158,25 +158,32 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">ID tanggapan</th>
-                                    <th scope="col">ID pengaduan</th>
-                                    <th scope="col">tanggal tanggapan</th>
-                                    <th scope="col">tanggapan</th>
                                     <th scope="col">ID petugas</th>
+                                    <th scope="col">nama petugas</th>
+                                    <th scope="col">username</th>
+                                    <th scope="col">password</th>
+                                    <th scope="col">telp</th>
+                                    <th scope="col">level</th>
+                                    <th scope="col">Modifikasi</th>
                                 </tr>
                             </thead>  
                             <tbody>
                                 <?php
                                     $no=1;
-                                        foreach ($tanggapan as $users) {
+                                        foreach ($petugas as $users) {
                                 ?>
                                         <tr>
                                             <td><?php echo $no++ ;?></td>
-                                            <td><?php echo $users->id_tanggapan ?></td>
-                                            <td><?php echo $users->id_pengaduan ?></td>
-                                            <td><?php echo $users->tgl_tanggapan ?></td>
-                                            <td><?php echo $users->tanggapan ?></td>
                                             <td><?php echo $users->id_petugas ?></td>
+                                            <td><?php echo $users->nama_petugas ?></td>
+                                            <td><?php echo $users->username ?></td>
+                                            <td><?php echo $users->password ?></td>
+                                            <td><?php echo $users->telp ?></td>
+                                            <td><?php echo $users->level ?></td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus"><i class="fa fa-trash"></i></button>
+                                                <?php echo anchor('test/editData/'.$users->id_petugas,'<button type="button" class="btn btn-primary"><i class="fa fa-search-plus"></i></button>')?> 
+                                            </td>
                                         </tr>
                                 <?php 
                                     }
@@ -210,7 +217,6 @@
             </div>
         </div>
         <!--  -->
-        
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

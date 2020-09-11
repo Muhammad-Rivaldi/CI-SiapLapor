@@ -123,7 +123,7 @@
                             <span>Masyarakat</span>
                         </h6>
                         <li class="nav-item border-bottom">
-                            <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                            <a class="nav-link" href="<?php echo site_url('test/masyarakat') ?>">
                                 <i class="fa fa-user"></i>
                                 masyarakat
                             </a>
@@ -132,7 +132,7 @@
                             <span>Petugas</span>
                         </h6>
                         <li class="nav-item border-bottom">
-                            <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                            <a class="nav-link" href="<?php echo site_url('test/petugas') ?>">
                                 <i class="fas fa-user-shield"></i>
                                 petugas
                             </a>

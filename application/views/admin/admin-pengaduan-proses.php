@@ -71,7 +71,7 @@
         <input class="form-control form-control-light w-100" type="text" style="font-size: large;" value="<?php echo $this->session->userdata('nama_petugas') ?> | <?php echo $this->session->userdata('level') ?>" disabled aria-label="Search">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a href="<?php echo site_url('test/logout') ?>"><button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Keluar</button></a>
+            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal" type="button">Keluar</button>
             </li>
         </ul>
     </nav>
@@ -123,7 +123,7 @@
                             <span>Masyarakat</span>
                         </h6>
                         <li class="nav-item border-bottom">
-                            <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                            <a class="nav-link" href="<?php echo site_url('test/masyarakat') ?>">
                                 <i class="fa fa-user"></i>
                                 masyarakat
                             </a>
@@ -132,7 +132,7 @@
                             <span>Petugas</span>
                         </h6>
                         <li class="nav-item border-bottom">
-                            <a class="nav-link" href="<?php echo site_url('test/pengaduanBaru') ?>">
+                            <a class="nav-link" href="<?php echo site_url('test/petugas') ?>">
                                 <i class="fas fa-user-shield"></i>
                                 petugas
                             </a>
