@@ -94,72 +94,9 @@
     </div>
     <!-- end kontainer -->
 
-    <!-- Modal untuk exit-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">konfirmasi</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>apakah anda ingin keluar dari situs ini?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">tidak</button>
-                    <a href="<?php echo site_url('test/logout') ?>"><button type="button" class="btn btn-primary">Ya</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--  -->
-
-    <!-- Add Modal -->
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="formtambah" method="post">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Nama Makanan</label>
-                            <input type="text" name="namabarang" id="nmabarang" class="form-control" placeholder="Masukkan Nama Makanan">
-                        </div>
-                        <div class="form-group">
-                            <label>Picture</label>
-                            <input type="file" name="user_image" id="user_image" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Jenis Makanan</label>
-                            <select class="custom-select drpdw" name="kategoriitem" id="ktgritem">
-                                <option selected>Select Category</option>
-                                <option value="makanan">Makanan</option>
-                                <option value="minuman">Minuman</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Harga Makanan</label>
-                            <input type="text" name="hargabarang" id="hrgbarang" class="form-control" placeholder="Masukkan Harga Makanan">
-                        </div>
-                        <input value="tersedia" type="hidden" id="statusbarang" name="status" class="form-control">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <input type="hidden" name="action" class="btn btn-success" value="Add" />
-                        <input type="submit" value="Add" name="action" class="btn btn-success" />
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <!-- end add modal -->
+    <!-- partial modals -->
+    <?php $this->load->view('admin/modal/modal'); ?>
+    <!-- end partial modals -->
 
     <!-- partial js -->
     <?php $this->load->view('admin/link/link_js'); ?>

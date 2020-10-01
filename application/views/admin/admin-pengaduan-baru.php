@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <?php $this->load->view('link/link_head'); ?>
+    <!-- partial head -->
+    <?php $this->load->view('admin/link/link_head'); ?>
+    <!-- end partial head -->
 
     <style>
         .bd-placeholder-img {
@@ -131,7 +133,8 @@
     <!--  -->
 
     <!-- partial js -->
-    <?php $this->load->view('link/link_js'); ?>
+    <?php $this->load->view('admin/link/link_js'); ?>
+    <!-- end partial js -->
 </body>
 
 </html>
