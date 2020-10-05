@@ -5,55 +5,14 @@
             $('#addModal').modal('show');
         });
 
-        // $('#petugas').on('click','.editbtn', function() {
-        //     $('#editModal').modal('show');
-        // });
-
         // READ DATA
         // ini adalah fungsi untuk memunculkan data di datatable
-            // var data_petugas = $('#petugas').DataTable({
-            //     "processing": true,
-            //     "ajax": "<?= base_url("ajax_controller/data_petugas") ?>",
-            //     "data": [],
-            // });
-        listUsers();
-        $('#petugas').dataTable({
-            "bPaginate": true,
-            "bInfo": true,
-            "bFilter": true,
-            "bLengthChange": true,
-            "pageLength": 5
+        var data_petugas = $('#petugas').DataTable({
+            "processing": true,
+            "ajax": "<?= base_url("ajax_controller/data_petugas") ?>",
+            "data": [],
         });
-        function listUsers() {
-            $.ajax({
-                type: 'ajax',
-                url: 'data_petugas',
-                async: false,
-                dataType: 'json',
-                success: function(data) {
-                    var html = '';
-                    var i;
-                    var no = 1;
-                    for (i = 0; i < data.length; i++) {
-                        html += '<tr id="' + data[i].id_petugas + '">' +
-                            '<td>' + no++ + '</td>' +
-                            '<td>' + data[i].id_petugas + '</td>' +
-                            '<td>' + data[i].nama_petugas + '</td>' +
-                            '<td>' + data[i].username + '</td>' +
-                            '<td>' + data[i].password + '</td>' +
-                            '<td>' + data[i].telp + '</td>' +
-                            '<td>' + data[i].level + '</td>' +
-                            '<td>' +
-                            '<button type="button" class="btn btn-primary btn-sm btn-icon-split editbtn" name="editbtn" data-toggle="modal" data-target="editModal" data-id="' + data[i].id_petugas + '" style="padding-right: 6%;"><span class="icon text-white"><i class="fas fa-edit"></i> edit</span></button>' + ' ' +
-                            '<a href="javascript:void(0);" class="btn btn-danger btn-sm deleteRecord" data-id="' + data[i].id_petugas + '">Delete</a>' +
-                            '</td>' +
-                            '</tr>';
-                    }
-                    $('#data_petugas').html(html);
-                }
-            });
-        }
-
+        
         // ADD DATA
         // Tambah barang
         $(document).on('submit', '#inputpetugas', function(event) {
@@ -103,29 +62,129 @@
 
         // EDIT DATA
         // Get id petugas
-		$('#petugas').on('click', '.editbtn', function() {
-			// console.log("lsadjlaskdjaskldj")
+        $('#petugas').on('click', '.editbtn', function(event) {
+            // console.log("masuk halaman edit")
+            var div = $(event.relatedTarget)
+            var id_petugas = $(this).attr("id");
+            $.ajax({
+                url: "get_petugas",
+                type: "post",
+                data: {
+                    id_petugas: id_petugas
+                },
+                dataType: "JSON",
+                success: function(data) {
+                    $('#editModal').modal('show');
+                    $('#namapetugas').val(data.nama_petugas);
+                    $('#usernamepetugas').val(data.username);
+                    $('#passwordpetugas').val(data.password);
+                    $('#telppetugas').val(data.telp);
+                    $('#rolepetugas').val(data.level);
+                    $('#idpetugas').val(id_petugas);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+
+        // Edit petugas
+		$(document).on('submit', '#editpetugas', function(event) {
+			event.preventDefault();
+            var petugas_nama = $('#namapetugas').val();
+            var petugas_username = $('#usernamepetugas').val();
+            var petugas_password = $('#passwordpetugas').val();
+            var petugas_telpon = $('#telppetugas').val();
+            var petugas_level = $('#rolepetugas').val();
+
+            if (petugas_nama != '' && petugas_username != '' && petugas_password != '' && petugas_telpon != '' && petugas_level != '') {
+                $.ajax({
+                    type: "post",
+                    url: "<?= base_url("ajax_controller/edit_petugas") ?>",
+                    beforeSend: function() {
+                        swal({
+                            type: 'loading',
+                            title: 'Menunggu',
+                            html: 'Memproses data',
+                            onOpen: () => {
+                                swal.showLoading()
+                            }
+                        })
+                    },
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function() {
+                        swal({
+                            type: 'success',
+                            title: 'Edit Barang',
+                            text: 'Anda Berhasil Mengedit Barang'
+                        })
+                        $('#editpetugas')[0].reset();
+                        $('#editModal').modal('hide');
+                        data_petugas.ajax.reload(null, false);
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.responseText);
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Bother fields are required!',
+                });
+            }
+        });
+        
+        // delete petugas
+		$(document).on('click', '.deletebtn', function() {
 			var id_petugas = $(this).attr("id");
-			$.ajax({
-				url: "<?= base_url("ajax_controller/get_petugas") ?>",
-				type: "post",
-				data: {
-					id_petugas: id_petugas
-				},
-				dataType: "JSON",
-				success: function(data) {
-					$('#editModal').modal('show');
-					$('#namapetugas').val(data.nama_petugas);
-					$('#usernamepetugas').val(data.harga_awal);
-					$('#passwordpetugas').val(data.deskripsi_barang);
-					$('#telppetugas').val(data.kategori_barang);
-					$('#rolepetugas').val(data.status);
-					$('#idpetugas').val(id_petugas);
-				},
-				error: function(xhr, ajaxOptions, thrownError) {
-					console.log(xhr.responseText);
-				}
+			swal({
+				title: 'Konfirmasi',
+				text: "Apakah anda yakin ingin menghapus ",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Hapus',
+				confirmButtonColor: '#d33',
+				cancelButtonColor: '#3085d6',
+				cancelButtonText: 'Tidak',
+				reverseButtons: true
+			}).then((result) => {
+				if (result.value) {
+					$.ajax({
+						url: "<?= base_url('ajax_controller/hapus_petugas') ?>",
+						type: "post",
+						beforeSend: function() {
+							swal({
+								title: 'Menunggu',
+								html: 'Memproses data',
+								onOpen: () => {
+									swal.showLoading()
+								}
+							})
+						},
+						data: {
+							id_petugas: id_petugas
+						},
+						success: function(data) {
+							swal(
+								'Hapus',
+								'Berhasil Terhapus',
+								'success'
+							)
+							data_petugas.ajax.reload(null, false)
+						}
+					});
+				} else if (result.dismiss === swal.DismissReason.cancel) {
+					swal(
+						'Batal',
+						'Anda membatalkan penghapusan',
+						'error'
+					)
+				};
 			});
+
 		});
     });
 </script>

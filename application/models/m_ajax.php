@@ -6,7 +6,7 @@ class m_ajax extends CI_Model {
     public function get_petugas()
     {
     $data = $this->db->get('petugas');
-    return $data->result();
+    return $data->result_array();
     }
 
     // insert data petugas
@@ -30,5 +30,19 @@ class m_ajax extends CI_Model {
 		$query = $this->db->get('petugas');
 		return $query->result();
     }
+    
+    // data edit petugas
+    public function update_data($where, $data, $table)
+	{
+		$this->db->where($where);
+		$this->db->update($table, $data);
+    }
+    
+    // data delete petugas
+    function delete_data($where, $table)
+	{
+		$this->db->where($where);
+		$this->db->delete($table);
+	}
 }
 ?>
