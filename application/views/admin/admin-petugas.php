@@ -75,6 +75,7 @@
                     <table class="table table-bordered text-center" cellspacing="0" width="100%" id="petugas">
                         <thead class="bg-secondary text-white">
                             <tr>
+                                <th>No</th>
                                 <th>Id Petugas</th>
                                 <th>Nama Petugas</th>
                                 <th>Username</th>

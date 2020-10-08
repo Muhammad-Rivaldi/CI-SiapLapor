@@ -219,13 +219,6 @@ class Test extends CI_Controller
 		$this->load->view('masyarakat/users', $data);
 	}
 
-	// // fungsi untuk menampilkan halaman jika berhasil kirim pengaduan
-	// public function index4()
-	// {
-	// 	$this->load->view('masyarakat/berhasil-upload');
-	// }
-	// //
-
 	// untuk simpan data di tabel pengaduan
 	public function simpan_to_pengaduan()
 	{

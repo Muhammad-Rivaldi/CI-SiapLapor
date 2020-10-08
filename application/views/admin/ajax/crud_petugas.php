@@ -62,7 +62,7 @@
 
         // EDIT DATA
         // Get id petugas
-        $('#petugas').on('click', '.editbtn', function(event) {
+        $(document).on('click', '.editbtn', function(event) {
             // console.log("masuk halaman edit")
             var div = $(event.relatedTarget)
             var id_petugas = $(this).attr("id");
@@ -184,7 +184,6 @@
 					)
 				};
 			});
-
 		});
     });
 </script>

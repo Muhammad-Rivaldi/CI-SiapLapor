@@ -22,8 +22,10 @@ class Ajax_controller extends CI_Controller
 	{
 		$datapetugas = $this->m_ajax->get_petugas();
 		// echo json_encode($datapetugas);
+		$no = 1;
 		foreach ($datapetugas as $value) {
 			$tbody = array();
+			$tbody[] = $no++;
 			$tbody[] = $value['id_petugas'];
 			$tbody[] = $value['nama_petugas'];
 			$tbody[] = $value['username'];
@@ -52,7 +54,7 @@ class Ajax_controller extends CI_Controller
 		}
 	}
 
-	// insert data petugas
+	//ajax insert data petugas
 	public function insert_petugas()
 	{
 		if ($_POST["action"] == "Add") {
@@ -105,7 +107,7 @@ class Ajax_controller extends CI_Controller
 		}
 	}
 
-	// hapus data petugas
+	//ajax delete data petugas
 	public function hapus_petugas()
 	{
 		$id_petugas = $_POST['id_petugas'];
